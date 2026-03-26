@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: webhooks_generator_ai_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: webhook_generator_ai
+    ports:
+      - "5432:5432"
