@@ -10,6 +10,7 @@ import { fastifySwagger } from "@fastify/swagger";
 import { fastifyCors } from "@fastify/cors";
 import ScalarApiReference from "@scalar/fastify-api-reference";
 import { listWebhooksRoute } from "./routes/list-webhooks";
+import { env } from "./env";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -40,10 +41,12 @@ app.register(ScalarApiReference, {
 app.register(listWebhooksRoute);
 
 app
-	.listen({ port: 3333, host: "0.0.0.0" })
+	.listen({ port: env.PORT, host: "0.0.0.0" })
 	.then(() => {
-		console.log("Server is running on http://localhost:3333");
-		console.log("API documentation available at http://localhost:3333/docs");
+		console.log(`Server is running on http://localhost:${env.PORT}`);
+		console.log(
+			`API documentation available at http://localhost:${env.PORT}/docs`,
+		);
 	})
 	.catch((err) => {
 		console.error("Error starting server:", err);
