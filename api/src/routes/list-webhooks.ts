@@ -1,16 +1,16 @@
-import { lt } from 'drizzle-orm'
+import { desc, lt } from 'drizzle-orm'
 import { createSelectSchema } from 'drizzle-zod'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { db } from '@/db'
-import { webhooks } from '@/db/schemas/webhooks'
+import { webhooks } from '@/db/schemas'
 
-export const listWebhooksRoute: FastifyPluginAsyncZod = async (app) => {
+export const listWebhooks: FastifyPluginAsyncZod = async (app) => {
   app.get(
     '/api/webhooks',
     {
       schema: {
-        summary: 'List all captured webhooks',
+        summary: 'List webhooks',
         tags: ['Webhooks'],
         querystring: z.object({
           limit: z.coerce.number().min(1).max(100).default(20),
@@ -26,7 +26,6 @@ export const listWebhooksRoute: FastifyPluginAsyncZod = async (app) => {
                 createdAt: true,
               }),
             ),
-
             nextCursor: z.string().nullable(),
           }),
         },
@@ -44,6 +43,7 @@ export const listWebhooksRoute: FastifyPluginAsyncZod = async (app) => {
         })
         .from(webhooks)
         .where(cursor ? lt(webhooks.id, cursor) : undefined)
+        .orderBy(desc(webhooks.id))
         .limit(limit + 1)
 
       const hasMore = result.length > limit

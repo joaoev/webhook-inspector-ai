@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { db } from '@/db'
 import { webhooks } from '@/db/schemas'
 
-export const getWebhookRoute: FastifyPluginAsyncZod = async (app) => {
+export const getWebhook: FastifyPluginAsyncZod = async (app) => {
   app.get(
     '/api/webhooks/:id',
     {
