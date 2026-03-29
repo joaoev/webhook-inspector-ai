@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { API_BASE_URL } from '../env'
 import { webhookDetailsSchema } from '../http/schemas/webhooks'
 import { SectionDataTable } from './section-data-table'
 import { SectionTitle } from './section-title'
@@ -13,7 +14,7 @@ export function WebhookDetails({ id }: WebhookDetailsProps) {
 	const { data } = useSuspenseQuery({
 		queryKey: ['webhook', id],
 		queryFn: async () => {
-			const response = await fetch(`http://localhost:3333/api/webhooks/${id}`)
+			const response = await fetch(new URL(`/api/webhooks/${id}`, API_BASE_URL))
 			const data = await response.json()
 
 			return webhookDetailsSchema.parse(data)

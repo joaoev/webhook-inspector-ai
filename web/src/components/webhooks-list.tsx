@@ -2,6 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { Loader2, Wand2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { API_BASE_URL } from '../env'
 import { webhookListSchema } from '../http/schemas/webhooks'
 import { CodeBlock } from './ui/code-block'
 import { WebhooksListItem } from './webhooks-list-item'
@@ -19,7 +20,7 @@ export function WebhooksList() {
 		useSuspenseInfiniteQuery({
 			queryKey: ['webhooks'],
 			queryFn: async ({ pageParam }) => {
-				const url = new URL('http://localhost:3333/api/webhooks')
+				const url = new URL('/api/webhooks', API_BASE_URL)
 
 				if (pageParam) {
 					url.searchParams.set('cursor', pageParam)
@@ -78,7 +79,7 @@ export function WebhooksList() {
 	}
 
 	async function handleGenerateHandler() {
-		const response = await fetch('http://localhost:3333/api/generate', {
+		const response = await fetch(new URL('/api/generate', API_BASE_URL), {
 			method: 'POST',
 			body: JSON.stringify({ webhookIds: checkedWebhooksIds }),
 			headers: {
