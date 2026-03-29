@@ -1,6 +1,28 @@
+<div align="center">
+
+<img src=".github/cover.svg" alt="cover" width="100%">
+
 # Webhook Inspector AI
 
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?&logo=node.js&logoColor=white)
+![Fastify](https://img.shields.io/badge/fastify-%23FF0B34.svg?&logo=fastify&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?&logo=zod&logoColor=white)
+![Drizzle](https://img.shields.io/badge/Drizzle-%23000000?&logo=drizzle&logoColor=C5F74F)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?&logo=docker&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?logo=vite&logoColor=white)
+![Radix UI](https://img.shields.io/badge/radix%20ui-%23AC7EF4.svg?&logo=radix-ui&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?&logo=tailwind-css&logoColor=white)
+<!--![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)-->
+
 Aplicação full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
+
+[Visão geral](#visão-geral) · [funcionalidades](#funcionalidades) · [Tecnologias](#tecnologias) · [Instalação](#instalação) · [Scripts](#scripts)
+
+</div>
+
+---
 
 ## Visão Geral
 
