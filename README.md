@@ -18,7 +18,7 @@
 
 Aplicação full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
 
-[Visão geral](#visão-geral) · [funcionalidades](#funcionalidades) · [Tecnologias](#tecnologias) · [Instalação](#instalação) · [Scripts](#scripts)
+[Visão geral](#visão-geral) · [Funcionalidades](#funcionalidades) · [Tecnologias](#tecnologias) · [Pré-requisitos](#pré-requisitos) · [Instalação](#instalação) · [Variáveis](#variáveis-de-ambiente) · [Como Rodar](#como-rodar) · [Scripts](#scripts) · [Estrutura](#estrutura-do-projeto)
 
 </div>
 
