@@ -103,7 +103,7 @@ export function WebhooksList() {
 					<button
 						type="button"
 						disabled={!hasAnyWebhookChecked}
-						className="bg-indigo-400 mb-3 text-white w-full rounded-lg flex items-center justify-center gap-3 font-medium text-sm py-2 disabled:opacity-50"
+						className="bg-lime-600 mb-3 text-white w-full rounded-lg flex items-center justify-center gap-3 font-medium text-sm py-2 disabled:opacity-50"
 						onClick={() => handleGenerateHandler()}
 					>
 						<Wand2 className="size-4" />
