@@ -18,7 +18,7 @@
 
 Aplicação full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
 
-[Visão geral](#visão-geral) · [Funcionalidades](#funcionalidades) · [Tecnologias](#tecnologias) · [Pré-requisitos](#pré-requisitos) · [Instalação](#instalação) · [Variáveis](#variáveis-de-ambiente) · [Como Rodar](#como-rodar) · [Scripts](#scripts) · [Estrutura](#estrutura-do-projeto)
+[Visão geral](#visão-geral) · [Funcionalidades](#funcionalidades) · [Tecnologias](#tecnologias) · [Preview](#preview) · [Pré-requisitos](#pré-requisitos) · [Instalação](#instalação) · [Variáveis](#variáveis-de-ambiente) · [Como Rodar](#como-rodar) · [Scripts](#scripts) · [Estrutura](#estrutura-do-projeto)
 
 </div>
 
@@ -67,6 +67,10 @@ O projeto é um monorepo com dois workspaces:
 - pnpm (workspaces)
 - Biome (formatação)
 - Docker / Docker Compose (banco)
+
+## Preview
+
+![Preview da aplicação](.github/home_aplication.png)
 
 ## Pré-requisitos
 
