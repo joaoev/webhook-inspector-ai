@@ -178,7 +178,7 @@ pnpm run dev
 └── pnpm-workspace.yaml
 ```
 
-## Observacoes
+## Observações
 
-- Nao ha test runner configurado no momento.
+- Não há test runner configurado no momento.
 - Se alterar arquivos `.env`, reinicie os servidores de desenvolvimento.
