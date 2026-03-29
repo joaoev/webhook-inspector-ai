@@ -133,10 +133,24 @@ export function WebhooksList() {
 			</div>
 
 			{!!generatedHandlerCode && (
-				<Dialog.Root defaultOpen>
+				<Dialog.Root
+					open={!!generatedHandlerCode}
+					onOpenChange={(open) => {
+						if (!open) {
+							setGeneratedHandlerCode(null)
+						}
+					}}
+				>
 					<Dialog.Overlay className="bg-black/60 inset-0 fixed z-20" />
 
 					<Dialog.Content className="flex items-center justify-center fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 z-40">
+						{' '}
+						<Dialog.Title className="sr-only">
+							Generated Webhook Handler
+						</Dialog.Title>
+						<Dialog.Description className="sr-only">
+							TypeScript code for handling webhooks with validation
+						</Dialog.Description>{' '}
 						<div className="bg-zinc-900 w-150 p-4 rounded-lg border border-zinc-800 max-h-155 overflow-y-auto">
 							<CodeBlock language="typescript" code={generatedHandlerCode} />
 						</div>
