@@ -55,6 +55,8 @@ export const generateHandler: FastifyPluginAsyncZod = async (app) => {
 
           You can use this prompt to request the TypeScript code you need for handling webhook events with Zod validation.
 
+          Write all code comments in pt-BR, but keep the code itself in English.
+
           Return only the code and do not return \`\`\`typescript or any other markdown symbols, do not include any introduction or text before or after the code.
         `.trim(),
       })
