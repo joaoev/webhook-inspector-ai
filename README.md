@@ -1,147 +1,184 @@
 # Webhook Generator AI
 
-Uma aplicação full-stack para capturar, inspecionar e analisar requisições de webhook utilizando inteligência artificial.
+Aplicacao full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
 
-## 📦 Tecnologias
+## Visao Geral
 
-### Backend
-- **Fastify** - Framework web de alta performance
-- **Drizzle ORM** - Type-safe database toolkit
-- **PostgreSQL** - Banco de dados
-- **Zod** - Validação de schemas TypeScript
-- **TypeScript** - Type safety na aplicação
+O projeto e um monorepo com dois workspaces:
 
-### Frontend
-- **React** - Biblioteca UI
-- **Vite** - Build tool e dev server
-- **TypeScript** - Type safety
+- `api`: backend em Fastify + Drizzle + PostgreSQL
+- `web`: frontend em React + Vite + TanStack Router
+
+## Funcionalidades
+
+- Captura de webhooks em endpoint dedicado.
+- Listagem paginada de webhooks capturados.
+- Visualizacao de detalhes do webhook (overview, headers, query params e body).
+- Exclusao de webhook.
+- Selecao de multiplos webhooks para gerar um handler TypeScript via IA.
+- Documentacao interativa da API em `/docs`.
+
+## Tecnologias
+
+### Backend (`api`)
+
+- Fastify
+- fastify-type-provider-zod
+- Drizzle ORM + drizzle-zod
+- PostgreSQL (`pg`)
+- Zod
+- AI SDK (`ai`) + Google provider (`@ai-sdk/google`)
+- TypeScript + tsx
+
+### Frontend (`web`)
+
+- React 19
+- Vite 8
+- TanStack React Query
+- TanStack Router
+- Radix UI
+- Tailwind CSS 4
+- TypeScript
 
 ### Ferramentas
-- **pnpm** - Gerenciador de pacotes
-- **Biome** - Linter e formatter
-- **Docker** - Containerização do banco de dados
 
-## 🚀 Instalação
+- pnpm (workspaces)
+- Biome (formatacao)
+- Docker / Docker Compose (banco)
 
-### Pré-requisitos
-- Node.js 18+
+## Pre-requisitos
+
+- Node.js 20+
 - pnpm 10+
-- Docker e Docker Compose (para o banco de dados)
+- Docker e Docker Compose
+- Chave de API do Google Generative AI
 
-### Passos
+## Instalacao
 
-1. **Clone o repositório**
-```bash
-git clone <seu-repo>
-cd webhook_generator_ai
-```
+1. Instale as dependencias na raiz:
 
-2. **Instale as dependências**
 ```bash
 pnpm install
 ```
 
-3. **Configure as variáveis de ambiente**
+2. Configure variaveis de ambiente da API:
+
 ```bash
 cd api
 cp .env.example .env
-# Edite o arquivo .env com seus dados
 ```
 
-4. **Inicie o PostgreSQL**
+3. Configure variaveis de ambiente do frontend:
+
 ```bash
+cd ../web
+cp .env.example .env
+```
+
+4. Suba o PostgreSQL:
+
+```bash
+cd ../api
 docker compose up -d
 ```
 
-5. **Crie e migre o banco de dados**
+5. Gere e aplique migracoes:
+
 ```bash
 pnpm run db:generate
 pnpm run db:migrate
 ```
 
-## 📋 Uso
+## Variaveis de Ambiente
+
+### API (`api/.env`)
+
+- `NODE_ENV` (default: `development`)
+- `PORT` (default: `3333`)
+- `DATABASE_URL` (obrigatoria)
+- `GOOGLE_GENERATIVE_AI_API_KEY` (obrigatoria)
+
+Exemplo em `api/.env.example`.
+
+### Web (`web/.env`)
+
+- `VITE_API_URL` (ex.: `http://localhost:3333`)
+
+Exemplo em `web/.env.example`.
+
+## Como Rodar
 
 ### Desenvolvimento
 
-Inicie ambos os servidores simultaneamente na raiz do projeto:
+Terminal 1 (API):
 
 ```bash
-# Terminal 1: Backend (api)
 cd api
 pnpm run dev
-# Backend rodará em http://localhost:3000
+```
 
-# Terminal 2: Frontend (web)
+Terminal 2 (Web):
+
+```bash
 cd web
 pnpm run dev
-# Frontend rodará em http://localhost:5173
 ```
 
-### Produção
+## Scripts
 
-```bash
-# Build
-pnpm run build
+### API (`api/package.json`)
 
-# Start backend
-cd api
-pnpm start
-```
+- `pnpm run dev`: inicia API com hot reload
+- `pnpm run start`: executa build da API (dist)
+- `pnpm run format`: formata codigo com Biome
+- `pnpm run db:generate`: gera migracoes Drizzle
+- `pnpm run db:migrate`: aplica migracoes
+- `pnpm run db:studio`: abre Drizzle Studio
+- `pnpm run db:seed`: popula dados de exemplo
 
-## 🛠️ Scripts Disponíveis
+### Web (`web/package.json`)
 
-### Projeto Root
-- `pnpm install` - Instala dependências de todos os workspaces
-- `pnpm run build` - Build de todos os workspaces
+- `pnpm run dev`: inicia frontend
+- `pnpm run build`: build de producao
+- `pnpm run preview`: preview do build
+- `pnpm run format`: formata codigo com Biome
 
-### API (`api/`)
-- `pnpm run dev` - Inicia servidor em desenvolvimento
-- `pnpm start` - Inicia servidor em produção
-- `pnpm run format` - Formata código com Biome
-- `pnpm run db:generate` - Gera migrações do banco
-- `pnpm run db:migrate` - Executa migrações
-- `pnpm run db:studio` - Abre Drizzle Studio (UI do banco)
+### Monorepo (raiz)
 
-### Web (`web/`)
-- `pnpm run dev` - Inicia dev server
-- `pnpm run build` - Build para produção
-- `pnpm run preview` - Preview do build
+- `pnpm install`: instala dependencias de todos os workspaces
+- `pnpm -r run build`: executa build em todos os workspaces
 
-## 📁 Estrutura do Projeto
+## Enderecos Locais
 
-```
-webhook_generator_ai/
-├── api/                 # Backend Fastify
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:3333`
+- API Docs: `http://localhost:3333/docs`
+- PostgreSQL: `localhost:5432`
+
+## Estrutura do Projeto
+
+```text
+.
+├── api/
 │   ├── src/
-│   │   ├── server.ts   # Configuração do servidor
-│   │   ├── env.ts      # Validação de variáveis
-│   │   ├── db/         # Drizzle ORM & schemas
-│   │   └── routes/     # Rotas da API
+│   │   ├── db/
+│   │   ├── routes/
+│   │   ├── env.ts
+│   │   └── server.ts
 │   ├── drizzle.config.ts
-│   └── package.json
-├── web/                 # Frontend React + Vite
+│   └── docker-compose.yml
+├── web/
 │   ├── src/
-│   │   ├── app.tsx     # Componente principal
-│   │   └── main.tsx    # Entry point
-│   ├── vite.config.ts
-│   └── package.json
-└── docker-compose.yml  # PostgreSQL container
+│   │   ├── components/
+│   │   ├── http/
+│   │   ├── routes/
+│   │   └── main.tsx
+│   ├── .env.example
+│   └── vite.config.ts
+└── pnpm-workspace.yaml
 ```
 
-## 🔗 Endereços Úteis
+## Observacoes
 
-- **API**: http://localhost:3000
-- **API Docs (Swagger)**: http://localhost:3000/docs
-- **Frontend**: http://localhost:5173
-- **PostgreSQL**: localhost:5432
-- **Drizzle Studio**: http://localhost:4983
-
-## 📝 Notas
-
-- WSL + Chrome: Se tiver bloco de CORS ao acessar Drizzle Studio, permita acesso local em `chrome://settings/content/localNetworkAccess`
-- Certifique-se de que o Docker está rodando antes de iniciar o projeto
-- Use `docker compose down` para parar os serviços
-
-## 📧 Contato
-
-Para dúvidas ou sugestões, abra uma issue no projeto.
+- Nao ha test runner configurado no momento.
+- Se alterar arquivos `.env`, reinicie os servidores de desenvolvimento.
