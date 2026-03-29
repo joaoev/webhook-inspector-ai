@@ -1,10 +1,10 @@
-# Webhook Generator AI
+# Webhook Inspector AI
 
-Aplicacao full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
+Aplicação full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
 
-## Visao Geral
+## Visão Geral
 
-O projeto e um monorepo com dois workspaces:
+O projeto é um monorepo com dois workspaces:
 
 - `api`: backend em Fastify + Drizzle + PostgreSQL
 - `web`: frontend em React + Vite + TanStack Router
@@ -13,10 +13,10 @@ O projeto e um monorepo com dois workspaces:
 
 - Captura de webhooks em endpoint dedicado.
 - Listagem paginada de webhooks capturados.
-- Visualizacao de detalhes do webhook (overview, headers, query params e body).
-- Exclusao de webhook.
-- Selecao de multiplos webhooks para gerar um handler TypeScript via IA.
-- Documentacao interativa da API em `/docs`.
+- Visualização de detalhes do webhook (overview, headers, query params e body).
+- Exclusão de webhook.
+- Seleção de múltiplos webhooks para gerar um handler TypeScript via IA.
+- Documentação interativa da API em `/docs`.
 
 ## Tecnologias
 
@@ -43,32 +43,32 @@ O projeto e um monorepo com dois workspaces:
 ### Ferramentas
 
 - pnpm (workspaces)
-- Biome (formatacao)
+- Biome (formatação)
 - Docker / Docker Compose (banco)
 
-## Pre-requisitos
+## Pré-requisitos
 
 - Node.js 20+
 - pnpm 10+
 - Docker e Docker Compose
 - Chave de API do Google Generative AI
 
-## Instalacao
+## Instalação
 
-1. Instale as dependencias na raiz:
+1. Instale as dependências na raiz:
 
 ```bash
 pnpm install
 ```
 
-2. Configure variaveis de ambiente da API:
+2. Configure variáveis de ambiente da API:
 
 ```bash
 cd api
 cp .env.example .env
 ```
 
-3. Configure variaveis de ambiente do frontend:
+3. Configure variáveis de ambiente do frontend:
 
 ```bash
 cd ../web
@@ -82,14 +82,14 @@ cd ../api
 docker compose up -d
 ```
 
-5. Gere e aplique migracoes:
+5. Gere e aplique migrações:
 
 ```bash
 pnpm run db:generate
 pnpm run db:migrate
 ```
 
-## Variaveis de Ambiente
+## Variáveis de Ambiente
 
 ### API (`api/.env`)
 
@@ -130,9 +130,9 @@ pnpm run dev
 
 - `pnpm run dev`: inicia API com hot reload
 - `pnpm run start`: executa build da API (dist)
-- `pnpm run format`: formata codigo com Biome
-- `pnpm run db:generate`: gera migracoes Drizzle
-- `pnpm run db:migrate`: aplica migracoes
+- `pnpm run format`: formata código com Biome
+- `pnpm run db:generate`: gera migrações Drizzle
+- `pnpm run db:migrate`: aplica migrações
 - `pnpm run db:studio`: abre Drizzle Studio
 - `pnpm run db:seed`: popula dados de exemplo
 
@@ -141,14 +141,14 @@ pnpm run dev
 - `pnpm run dev`: inicia frontend
 - `pnpm run build`: build de producao
 - `pnpm run preview`: preview do build
-- `pnpm run format`: formata codigo com Biome
+- `pnpm run format`: formata código com Biome
 
 ### Monorepo (raiz)
 
-- `pnpm install`: instala dependencias de todos os workspaces
+- `pnpm install`: instala dependências de todos os workspaces
 - `pnpm -r run build`: executa build em todos os workspaces
 
-## Enderecos Locais
+## Endereços Locais
 
 - Frontend: `http://localhost:5173`
 - API: `http://localhost:3333`
