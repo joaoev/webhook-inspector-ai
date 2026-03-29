@@ -18,7 +18,7 @@
 
 Aplicação full-stack para capturar, inspecionar e gerar handlers TypeScript para webhooks com apoio de IA.
 
-[Visão geral](#visão-geral) · [Funcionalidades](#funcionalidades) · [Tecnologias](#tecnologias) · [Preview](#preview) · [Pré-requisitos](#pré-requisitos) · [Instalação](#instalação) · [Variáveis](#variáveis-de-ambiente) · [Como Rodar](#como-rodar) · [Scripts](#scripts) · [Estrutura](#estrutura-do-projeto)
+[Visão geral](#visão-geral) · [Funcionalidades](#funcionalidades) · [Estrutura](#estrutura-do-projeto) · [Tecnologias](#tecnologias) · [Preview](#preview) · [Pré-requisitos](#pré-requisitos) · [Instalação](#instalação) · [Variáveis](#variáveis-de-ambiente) · [Como Rodar](#como-rodar) · [Scripts](#scripts)
 
 </div>
 
@@ -39,6 +39,29 @@ O projeto é um monorepo com dois workspaces:
 - Exclusão de webhook.
 - Seleção de múltiplos webhooks para gerar um handler TypeScript via IA.
 - Documentação interativa da API em `/docs`.
+
+## Estrutura do Projeto
+
+```text
+.
+├── api/
+│   ├── src/
+│   │   ├── db/
+│   │   ├── routes/
+│   │   ├── env.ts
+│   │   └── server.ts
+│   ├── drizzle.config.ts
+│   └── docker-compose.yml
+├── web/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── http/
+│   │   ├── routes/
+│   │   └── main.tsx
+│   ├── .env.example
+│   └── vite.config.ts
+└── pnpm-workspace.yaml
+```
 
 ## Tecnologias
 
@@ -180,29 +203,6 @@ pnpm run dev
 - API: `http://localhost:3333`
 - API Docs: `http://localhost:3333/docs`
 - PostgreSQL: `localhost:5432`
-
-## Estrutura do Projeto
-
-```text
-.
-├── api/
-│   ├── src/
-│   │   ├── db/
-│   │   ├── routes/
-│   │   ├── env.ts
-│   │   └── server.ts
-│   ├── drizzle.config.ts
-│   └── docker-compose.yml
-├── web/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── http/
-│   │   ├── routes/
-│   │   └── main.tsx
-│   ├── .env.example
-│   └── vite.config.ts
-└── pnpm-workspace.yaml
-```
 
 ## Observações
 
